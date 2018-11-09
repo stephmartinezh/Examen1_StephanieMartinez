@@ -1,13 +1,11 @@
-
 package examen1_stephaniemartinez;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.DefaultTableModel;
 
 public class Almacenamiento_Libros extends javax.swing.JFrame {
 
-    
     public Almacenamiento_Libros() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -47,7 +45,9 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         descripcion_l = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
+        listar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,18 +204,33 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Agregar", descripcion);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Genero", "Puntaje", "Valor", "Autor"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
+
+        listar.setText("Listar");
+        listar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listarMouseClicked(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("Lista de libros");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -223,15 +238,27 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(listar)
+                .addGap(350, 350, 350))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(332, 332, 332)
+                .addComponent(jLabel11)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(listar)
+                .addGap(21, 21, 21))
         );
 
         jTabbedPane1.addTab("Listar", jPanel1);
@@ -244,7 +271,7 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -263,7 +290,7 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         valo = Double.parseDouble(valor.getText());
         edic = Integer.parseInt(edicion.getText());
         a = Integer.parseInt(an_alma.getText());
-        lista.add(new Libro(ti, descrip, punt, cop, gen, valo, edic, aut, a));
+        lista.add(new LibrosAlmacenados(ti, descrip, punt, cop, gen, valo, edic, aut, a));
         JOptionPane.showMessageDialog(this, "Se ha agregado el libro");
     }//GEN-LAST:event_guardar_alMouseClicked
 
@@ -271,9 +298,17 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_guardar_alActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void listarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listarMouseClicked
+        LibrosAlmacenados l = new LibrosAlmacenados();
+        Object[] newrow = {
+            l.getTitulo(), l.getGenero(), l.getPuntaje(), l.getValor(), l.getAutor()
+        };
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.addRow(newrow);
+        tabla.setModel(modelo);
+    }//GEN-LAST:event_listarMouseClicked
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -317,6 +352,7 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
     private javax.swing.JButton guardar_al;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -329,10 +365,11 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton listar;
     private javax.swing.JSpinner puntaje;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField titulo;
     private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Libro> lista = new ArrayList();
+    ArrayList<LibrosAlmacenados> lista = new ArrayList();
 }

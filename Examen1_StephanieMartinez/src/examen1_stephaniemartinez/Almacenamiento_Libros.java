@@ -306,6 +306,7 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.addRow(newrow);
         tabla.setModel(modelo);
+        System.out.println(lista);
     }//GEN-LAST:event_listarMouseClicked
 
     

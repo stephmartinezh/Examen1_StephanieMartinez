@@ -1,21 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen1_stephaniemartinez;
 
-/**
- *
- * @author Lenovo
- */
+import javax.swing.JOptionPane;
+
 public class Examen1_StephanieMartinez {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        char resp = Acceso();
+        if(resp == 'a' || resp=='A' || resp == 's' || resp == 'S'){
+            Principal p = new Principal();
+            p.main(null);
+        }else{
+            JOptionPane.showMessageDialog(null, "No puede ingresar a la biblioteca virtual.");
+        }
     }
+
+    public static char Acceso() {
+        char resp = 'a';
+        String usuario1 = "usuario", contrasena = "contrasena1";
+        String us = JOptionPane.showInputDialog(null, "Ingrese su usuario");
+        String con = JOptionPane.showInputDialog(null, "Ingrese la contraseña");
+        if (us.equalsIgnoreCase(usuario1) && con.equalsIgnoreCase(contrasena)) {
+            JOptionPane.showMessageDialog(null, "¡Bienvenido!");
+            
+        } else {
+            String respuesta = JOptionPane.showInputDialog(null, "El usuario o la contraseña no son correctos.\nDesea crear una cuenta[S/N]");
+            resp = respuesta.charAt(0);
+        }
+        return resp;
+    }
+    /*
+    almacenado
     
+    */
+    /*
+     
+    */
+    /*
+    String usuario1 = "usuario", contrasena = "contrasena1";
+    
+    */
 }

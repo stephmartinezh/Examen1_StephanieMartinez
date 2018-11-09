@@ -6,10 +6,14 @@ public class Examen1_StephanieMartinez {
 
     public static void main(String[] args) {
         char resp = Acceso();
-        if(resp == 'a' || resp=='A' || resp == 's' || resp == 'S'){
+        if(resp == 's' || resp == 'S'){
             Principal p = new Principal();
             p.main(null);
-        }else{
+        } else if(resp == 'a' || resp=='A' ){
+            Almacenamiento_Libros l = new Almacenamiento_Libros();
+            l.main(null);
+        }
+        else{
             JOptionPane.showMessageDialog(null, "No puede ingresar a la biblioteca virtual.");
         }
     }
@@ -21,7 +25,6 @@ public class Examen1_StephanieMartinez {
         String con = JOptionPane.showInputDialog(null, "Ingrese la contraseña");
         if (us.equalsIgnoreCase(usuario1) && con.equalsIgnoreCase(contrasena)) {
             JOptionPane.showMessageDialog(null, "¡Bienvenido!");
-            
         } else {
             String respuesta = JOptionPane.showInputDialog(null, "El usuario o la contraseña no son correctos.\nDesea crear una cuenta[S/N]");
             resp = respuesta.charAt(0);

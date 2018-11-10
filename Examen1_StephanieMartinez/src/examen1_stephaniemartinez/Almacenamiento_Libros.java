@@ -46,10 +46,13 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        listar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         eliminar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        hist = new javax.swing.JTextArea();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,13 +227,6 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        listar.setText("Listar");
-        listar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listarMouseClicked(evt);
-            }
-        });
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Lista de libros");
 
@@ -260,24 +256,19 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(332, 332, 332)
-                                .addComponent(jLabel11))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(242, 242, 242)
-                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(332, 332, 332)
+                        .addComponent(jLabel11)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,13 +279,44 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listar)
                     .addComponent(eliminar)
                     .addComponent(modificar))
                 .addGap(20, 20, 20))
         );
 
         jTabbedPane1.addTab("Listar", jPanel1);
+
+        hist.setColumns(20);
+        hist.setRows(5);
+        jScrollPane3.setViewportView(hist);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText("Historial");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(350, 350, 350)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(166, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Historial", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -325,31 +347,45 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         a = Integer.parseInt(an_alma.getText());
         lista.add(new LibrosAlmacenados(ti, descrip, punt, cop, gen, valo, edic, aut, a));
         JOptionPane.showMessageDialog(this, "Se ha agregado el libro");
+        historial += cont + " Agregar libro\n";
+        System.out.println("prueba action");
+        cont++;
     }//GEN-LAST:event_guardar_alMouseClicked
 
     private void guardar_alActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_alActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_guardar_alActionPerformed
-
-    private void listarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listarMouseClicked
-        LibrosAlmacenados l = new LibrosAlmacenados();
+        String ti, descrip, gen, aut;
+        int punt, cop, edic, a;
+        double valo;
+        ti = titulo.getText();
+        descrip = descripcion_l.getSelectedText();
+        gen = genero_alma.getText();
+        aut = autor.getText();
+        punt = (int) puntaje.getValue();
+        cop = (int) copias.getValue();
+        valo = Double.parseDouble(valor.getText());
+        edic = Integer.parseInt(edicion.getText());
+        a = Integer.parseInt(an_alma.getText());
+        LibrosAlmacenados l = new LibrosAlmacenados(ti, descrip, punt, cop, gen, valo, edic, aut, a);
         Object[] newrow = {
             l.getTitulo(), l.getGenero(), l.getPuntaje(), l.getValor(), l.getAutor()
         };
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.addRow(newrow);
         tabla.setModel(modelo);
-    }//GEN-LAST:event_listarMouseClicked
+    }//GEN-LAST:event_guardar_alActionPerformed
 
     private void eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarMouseClicked
         String resp = "";
         for (int i = 0; i < lista.size(); i++) {
-            resp += lista.indexOf(i) + " -. " + lista + "\n ";
+            resp += i + " -. " + lista + "\n ";
         }
-        String resp2 = JOptionPane.showInputDialog(resp+ "\nIngrese la posición que desea eliminar");
+        String resp2 = JOptionPane.showInputDialog(resp + "\nIngrese la posición que desea eliminar");
         int pos = Integer.parseInt(resp2);
         lista.remove(pos);
-        
+        historial += cont + " Eliminar libro\n";
+        hist.setText(historial);
+        cont++;
     }//GEN-LAST:event_eliminarMouseClicked
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
@@ -359,11 +395,13 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
     private void modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarMouseClicked
         String resp = "";
         for (int i = 0; i < lista.size(); i++) {
-            resp += lista.indexOf(i) + " -. " + lista + "\n ";
+            resp += i + " -. " + lista + "\n ";
         }
-        String resp2 = JOptionPane.showInputDialog(resp+ "\nIngrese la posición que desea modificar");
+        String resp2 = JOptionPane.showInputDialog(resp + "\nIngrese la posición que desea modificar");
         int pos = Integer.parseInt(resp2);
-        
+        historial += cont + " Modificar libro\n";
+        hist.setText(historial);
+        cont++;
     }//GEN-LAST:event_modificarMouseClicked
 
     public static void main(String args[]) {
@@ -408,9 +446,11 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
     private javax.swing.JButton eliminar;
     private javax.swing.JTextField genero_alma;
     private javax.swing.JButton guardar_al;
+    private javax.swing.JTextArea hist;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -420,10 +460,11 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JButton listar;
     private javax.swing.JButton modificar;
     private javax.swing.JSpinner puntaje;
     private javax.swing.JTable tabla;
@@ -431,4 +472,6 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
     private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
     ArrayList<LibrosAlmacenados> lista = new ArrayList();
+    String historial = "";
+    int cont = 0;
 }

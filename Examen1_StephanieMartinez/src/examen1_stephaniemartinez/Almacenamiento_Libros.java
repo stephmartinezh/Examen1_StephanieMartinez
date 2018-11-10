@@ -348,7 +348,7 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         lista.add(new LibrosAlmacenados(ti, descrip, punt, cop, gen, valo, edic, aut, a));
         JOptionPane.showMessageDialog(this, "Se ha agregado el libro");
         historial += cont + " Agregar libro\n";
-        System.out.println("prueba action");
+        hist.setText(historial);
         cont++;
     }//GEN-LAST:event_guardar_alMouseClicked
 
@@ -399,6 +399,27 @@ public class Almacenamiento_Libros extends javax.swing.JFrame {
         }
         String resp2 = JOptionPane.showInputDialog(resp + "\nIngrese la posición que desea modificar");
         int pos = Integer.parseInt(resp2);
+        String ntitulo = JOptionPane.showInputDialog("Ingrese el nuevo título");
+        lista.get(pos).setTitulo(ntitulo);
+        String npu = JOptionPane.showInputDialog("Ingrese el nuevo puntaje");
+        int npuntaje = Integer.parseInt(npu);
+        lista.get(pos).setPuntaje(npuntaje);
+        String ncop = JOptionPane.showInputDialog("Ingrese el nuevo número de copias");
+        int ncopias = Integer.parseInt(ncop);
+        lista.get(pos).setCopias(ncopias);
+        String ngenero = JOptionPane.showInputDialog("Ingrese genero");
+        lista.get(pos).setGenero(ngenero);
+        String nv = JOptionPane.showInputDialog("Ingrese el nuevo valor");
+        double nvalor = Double.parseDouble(nv);
+        lista.get(pos).setValor(nvalor);
+        String ned = JOptionPane.showInputDialog("Ingrese la nueva edición");
+        int nedicion = Integer.parseInt(ned);
+        lista.get(pos).setEdicion(nedicion);
+        String nautor = JOptionPane.showInputDialog("Ingrese el nuevo Autor");
+        lista.get(pos).setAutor(nautor);
+        String na = JOptionPane.showInputDialog("Ingrese el nuevo año");
+        int nano = Integer.parseInt(na);
+        lista.get(pos).setAn(nano);
         historial += cont + " Modificar libro\n";
         hist.setText(historial);
         cont++;

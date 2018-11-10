@@ -7,7 +7,7 @@ public class Examen1_StephanieMartinez {
     public static void main(String[] args) {
         char resp = Acceso();
         if(resp == 's' || resp == 'S'){
-            Principal p = new Principal();
+            Usuario p = new Usuario();
             p.main(null);
         } else if(resp == 'a' || resp=='A' ){
             Almacenamiento_Libros l = new Almacenamiento_Libros();
@@ -31,15 +31,4 @@ public class Examen1_StephanieMartinez {
         }
         return resp;
     }
-    /*
-    almacenado
-    
-    */
-    /*
-     
-    */
-    /*
-    String usuario1 = "usuario", contrasena = "contrasena1";
-    
-    */
 }
